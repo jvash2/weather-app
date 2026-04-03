@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>App Clima</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main class="container">
+    <div class="card">
+      <h1>🌦️ App Clima ANYWAY</h1>
+
+      <form id="weather-form">
+        <input
+          type="text"
+          id="city-input"
+          placeholder="Ingresa una ciudad"
+          required
+        />
+        <button type="submit">Buscar</button>
+      </form>
+
+      <p id="loading" class="hidden">Cargando clima...</p>
+      <p id="error" class="error hidden"></p>
+
+      <div id="result" class="hidden">
+        <h2 id="city"></h2>
+        <img id="icon" />
+        <p id="temp"></p>
+        <p id="desc"></p>
+      </div>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
