@@ -39,8 +39,9 @@ function weatherDescription(code) {
 }
 
 async function getCoordsByCity(city) {
+  // Usamos encodeURIComponent para que ciudades con espacios no rompan la URL
   const res = await fetch(
-    `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1&language=es`
+    `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&language=es`
   );
   const data = await res.json();
   if (!data.results) throw new Error("Ciudad no encontrada");
@@ -65,7 +66,7 @@ async function fetchWeather(lat, lon, cityName) {
     saveCity(cityName);
 
   } catch (err) {
-    error.textContent = err.message;
+    error.textContent = "Error al obtener el clima. Intenta de nuevo.";
     error.classList.remove("hidden");
   } finally {
     hideLoading();
@@ -75,8 +76,10 @@ async function fetchWeather(lat, lon, cityName) {
 // Buscar por ciudad
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
+  const city = input.value.trim();
+  if (!city) return;
+
   try {
-    const city = input.value.trim();
     const location = await getCoordsByCity(city);
     fetchWeather(location.latitude, location.longitude, location.name);
   } catch (err) {
@@ -89,7 +92,10 @@ form.addEventListener("submit", async (e) => {
 window.addEventListener("load", () => {
   const savedCity = getSavedCity();
   if (savedCity) {
-    form.dispatchEvent(new Event("submit"));
+    // Si hay ciudad guardada, la buscamos directamente
+    getCoordsByCity(savedCity)
+      .then(loc => fetchWeather(loc.latitude, loc.longitude, loc.name))
+      .catch(() => localStorage.removeItem("lastCity"));
   } else if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((pos) => {
       fetchWeather(
@@ -100,4 +106,3 @@ window.addEventListener("load", () => {
     });
   }
 });
-

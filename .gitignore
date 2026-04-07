@@ -1,0 +1,9 @@
+# Archivos de sistema y editores
+.DS_Store
+.vscode/
+.idea/
+*.log
+
+# Si llegas a usar librerías de Node
+node_modules/
+dist/
