@@ -1,31 +1,27 @@
-# 🌦️ Weather App
+#  Weather App
 
 
 Aplicación web simple que consume una API pública para mostrar el clima en tiempo real.
 
 
-## 🚀 Funcionalidades
-- Consumo de API real (OpenWeatherMap)
+##  Funcionalidades
+- Consumes Public API (OpenWeatherMap)
 - Loading state
-- Manejo de errores
-- UX limpia
-- Arquitectura simple
+- manage errors
+- UX clean
+- Simple
 
 
-## 🧠 Tecnologías
+##  Tecnologías
 - HTML
 - CSS
 - JavaScript
 - Fetch API
 
 
-## 📡 API
+##  API
 OpenWeatherMap
 
 
-## 📸 Preview
-(agregar screenshot)
-
-
-## 🧑‍💻 Autor
+##  Autor
 Jimmy
